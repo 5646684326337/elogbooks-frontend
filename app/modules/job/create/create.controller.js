@@ -14,7 +14,7 @@
 
         function create() {
             $http.post(
-                'http://localhost:8001/job',
+                'https://elogbooks.johnothecoder.uk/job',
                 vm.job
             ).then(function (response) {
                 $state.go('jobs.view', {id:response.data.id});

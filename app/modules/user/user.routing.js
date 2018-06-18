@@ -2,25 +2,25 @@
     'use strict';
 
     angular
-        .module('elogbooks.job', [])
+        .module('elogbooks.user', [])
         .config(registerRoutes);
 
     function registerRoutes($stateProvider) {
         $stateProvider
-            .state('jobs', {
+            .state('users', {
                 abstract: true,
-                url: '/jobs',
+                url: '/users',
                 template: '<ui-view/>'
             })
-            .state('jobs.list', {
+            .state('users.list', {
                 url: '/list',
-                controller: 'JobListController',
+                controller: 'UserListController',
                 controllerAs: 'vm',
-                templateUrl: 'modules/job/list/list.html',
+                templateUrl: 'modules/user/list/list.html',
                 resolve: {
-                    jobCollectionResponse : function ($http) {
+                    userCollectionResponse : function ($http) {
                         return $http({
-                            url: 'https://elogbooks.johnothecoder.uk/job',
+                            url: 'http://localhost:8001/user',
                             method: "GET",
                             params: {}
                         }).then(function (response) {
@@ -31,21 +31,15 @@
                     }
                 }
             })
-            .state('jobs.create', {
-                url: '/create',
-                controller: 'JobCreateController',
-                controllerAs: 'vm',
-                templateUrl: 'modules/job/create/create.html',
-            })
-            .state('jobs.view', {
+            .state('users.view', {
                 url: '/view/{id}',
-                controller: 'JobViewController',
+                controller: 'UserViewController',
                 controllerAs: 'vm',
-                templateUrl: 'modules/job/view/view.html',
+                templateUrl: 'modules/user/view/view.html',
                 resolve: {
-                    jobResponse : function ($http, $stateParams) {
+                    userResponse : function ($http, $stateParams) {
                         return $http({
-                            url: 'https://elogbooks.johnothecoder.uk/job/' + $stateParams.id,
+                            url: 'http://localhost:8001/user/' + $stateParams.id,
                             method: "GET"
                         }).then(function (response) {
                             return response.data;

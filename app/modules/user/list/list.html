@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        List ({{ vm.userCollection.count }})
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in vm.userCollection.data">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ job.email }}</td>
+            <td>
+                <button class="btn btn-xs btn-default" ui-sref="user.view({id: user.id})">View</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
